@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
+# AUTHOR: Francisco Serrano
+# FILENAME: naive_bayes.py
 # SPECIFICATION: description of the program
 # FOR: CS 4210- Assignment #2
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 1hr
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard
@@ -65,8 +65,6 @@ with open('weather_test.csv', 'r') as csvfile:
 #--> add your Python code here
 print("Probabilistic Predictions for Test Data:")
 print("----------------------------------------")
-#use your test samples to make probabilistic predictions. For instance: clf.predict_proba([[3, 1, 2, 1]])[0]
-#--> add your Python code here
 print("Day\t Outlook\t Temperature\t Humidity\t Wind\t PlayTennis\t Confidence\t")
 
 n=len(dbTest[0])

@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Francisco Serrano
+# FILENAME: decision_tree_2.py
+# SPECIFICATION: Construct a decision tree using each of the training sets, compute the accuracy by predicting the test set and averaging over 10 runs for each.
 # FOR: CS 4210- Assignment #2
 # TIME SPENT: 1 hr
 #-----------------------------------------------------------*/
@@ -14,6 +14,15 @@ from sklearn import tree
 import csv
 
 dataSets = ['contact_lens_training_1.csv', 'contact_lens_training_2.csv', 'contact_lens_training_3.csv']
+#read the test data and add this data to dbTest
+    #--> add your Python code here
+    #reading the training data in a csv file
+dbTest=[]
+with open('contact_lens_test.csv', 'r') as csvfile:
+    reader = csv.reader(csvfile)
+    for i, row in enumerate(reader):
+        if i > 0: #skipping the header
+            dbTest.append (row)
 
 for ds in dataSets:
     dbTraining = []
@@ -25,14 +34,7 @@ for ds in dataSets:
          for i, row in enumerate(reader):
              if i > 0: #skipping the header
                 dbTraining.append (row)
-    #transform the original categorical training features to numbers and add to the 4D array X. For instance Young = 1, Prepresbyopic = 2, Presbyopic = 3
-    # so X = [[1, 1, 1, 1], [2, 2, 2, 2], ...]]
-    #--> add your Python code here
-    # X =
-    #Young = 1, Prepresbyopic = 2, Presbyopic = 3
-    #myope = 1, hypermetrope =2
-    #yes=1, no = 2
-    #reduced=1, normal=2
+    #transform the original categorical training features to numbers and add to the 4D array X
     num_map={
     'Young':1 , 'Myope':1,'Yes':1,'Reduced':1,
     'Prepresbyopic':2,'Hypermetrope':2, 'No':2,'Normal':2,
@@ -48,23 +50,11 @@ for ds in dataSets:
     print("\n\n\nthe features:")
     print(X)
     #transform the original categorical training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
-    #--> add your Python code here
-    # Y =
     for record in dbTraining:
         Y.append(num_map[record[n-1]])
     print("target column/var:")
     print(Y)
     accuraries=[]
-
-    #read the test data and add this data to dbTest
-    #--> add your Python code here
-    #reading the training data in a csv file
-    dbTest=[]
-    with open('contact_lens_test.csv', 'r') as csvfile:
-        reader = csv.reader(csvfile)
-        for i, row in enumerate(reader):
-            if i > 0: #skipping the header
-                dbTest.append (row)
     #loop your training and test tasks 10 times here
     for i in range (10):
         true_positive=0
@@ -84,17 +74,12 @@ for ds in dataSets:
             #dont include target
             for i in range (n-1):
                 new_record.append(num_map[data[i]])
-            #and then use the decision tree to make the class prediction. 
-            #For instance: class_predicted = clf.predict([[3, 1, 2, 1]])[0]
-            #where [0] is used to get an integer as the predicted class label so that you can compare it with the true label
-            #print(new_record)
             matrix.append(new_record)
             class_predicted = clf.predict(matrix)[0]
             #compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
             
             true_label=num_map[data[n-1]]
             #print(f"we predicted: {class_predicted} for {matrix} with a true label of {true_label}")
-
             #when i converted i mapped yes to 1 and no to 2
             if(class_predicted==true_label):
                 if(class_predicted==1):
