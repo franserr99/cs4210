@@ -26,7 +26,6 @@ num_map= {
     'High':1,'Normal':2,
     'Weak':1,'Strong':2,
     'Yes':1,'No':2
-
 }
 #transform the original training features to numbers and add them to the 4D array X.
 #For instance Sunny = 1, Overcast = 2, Rain = 3, so X = [[3, 1, 1, 2], [1, 3, 2, 2], ...]]
