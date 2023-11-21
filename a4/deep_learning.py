@@ -1,7 +1,9 @@
 # -------------------------------------------------------------------------
 # AUTHOR: Francisco Serrano
 # FILENAME: deep_lerning.py
-# SPECIFICATION: description of the program
+# SPECIFICATION: Use keras to build the MLP architecture, 
+#               use the model to predict clothing item type from a built-in data set.
+#               Find the best combination of parameters for highest accuracy on test data
 # FOR: CS 4210- Assignment #4
 # TIME SPENT: 1hr
 # -----------------------------------------------------------*/
@@ -65,6 +67,7 @@ n_hidden = [2, 5, 10]
 n_neurons = [10, 50, 100]
 l_rate = [0.01, 0.05, 0.1]
 max_accuracy = 0
+best_model = None
 # looking or the best parameters w.r.t the number of hidden layers
 for num_of_hidden_layers in n_hidden:
     # looking or the best parameters w.r.t the number of neurons
@@ -80,7 +83,7 @@ for num_of_hidden_layers in n_hidden:
 
             # To train the model
             # epochs = number times that the learning algorithm will work through the entire training dataset.
-            history = model.fit(X_train, y_train, epochs=5,
+            history = model.fit(X_train, y_train, epochs=5, verbose=0,
                                 validation_data=(X_valid, y_valid))
 
             # for x_test_sample, y_test_sample in zip(X_test, y_test):
@@ -98,6 +101,7 @@ for num_of_hidden_layers in n_hidden:
                     rest += 1
             accuracy = hits / (hits+rest)
             if accuracy > max_accuracy:
+                best_model = model
                 max_accuracy = accuracy
                 print("Highest accuracy so far: " + str(max_accuracy))
                 print("Parameters: " + "Number of Hidden Layers: "
@@ -112,9 +116,9 @@ for num_of_hidden_layers in n_hidden:
 # output shape (None means the batch size can be anything), and its number of parameters. Note that Dense layers often have a lot of parameters. This gives the model quite a lot of
 # flexibility to fit the training data, but it also means that the model runs the risk of overfitting, especially when you do not have a lot of training data.
 
-print(model.summary())
+print(best_model.summary())
 img_file = './model_arch.png'
-tf.keras.utils.plot_model(model, to_file=img_file,
+tf.keras.utils.plot_model(best_model, to_file=img_file,
                           show_shapes=True, show_layer_names=True)
 
 # plotting the learning curves of the best model

@@ -2,7 +2,7 @@
 # AUTHOR: Francisco Serrano
 # FILENAME: perception.py
 # SPECIFICATION: Read the file optdigits.tra to build a
-#    Single Layer Perceptron and a Multi-Layer Perceptron classifiers
+#    Single Layer Perceptron and a Multi-Layer Perceptron classifiers, find best set of parameters for both of them.
 # FOR: CS 4210- Assignment #4
 # TIME SPENT: 1hr
 # -----------------------------------------------------------*/
