@@ -37,7 +37,8 @@ X_test = np.array(df.values)[:, :64]
 y_test = np.array(df.values)[:, -1]
 
 classifiers = ["Perceptron", "MLPClassifier"]
-
+# comments specified using 25, i think thats roughly what the geometric mean was.
+# i will switch to using the constant
 geoemtric_mean = int(math.sqrt(64 * 10))
 max_accuracy_perceptron = 0
 max_accuracy_mlp = 0
@@ -55,7 +56,7 @@ for learning_rate in n:  # iterates over n
                     activation='logistic',
                     learning_rate_init=learning_rate,
                     shuffle=shuffling,
-                    max_iter=1000, hidden_layer_sizes=geoemtric_mean)
+                    max_iter=1000, hidden_layer_sizes=(25,))
 
             # Fit the Neural Network to the training data
             clf.fit(X_training, y_training)
