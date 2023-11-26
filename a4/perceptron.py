@@ -8,7 +8,6 @@
 # -----------------------------------------------------------*/
 
 # IMPORTANT NOTE: YOU HAVE TO WORK WITH THE PYTHON LIBRARIES numpy AND pandas to complete this code.
-
 # importing some Python libraries
 from sklearn.linear_model import Perceptron
 # pip install scikit-learn==0.18.rc2 if needed
